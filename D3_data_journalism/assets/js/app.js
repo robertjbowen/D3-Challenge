@@ -72,7 +72,7 @@ function renderCircleLabels(circleLabelsGroup, newXScale, chosenXAxis) {
 }
 
 // function used for updating circles group with new tooltip
-function updateToolTip(chosenXAxis, circlesGroup) {
+function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
   var xlabel;
 
@@ -269,7 +269,7 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
     .text("Average Income ($)");
 
   // updateToolTip function above csv import
-  var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+  var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
   // x axis labels event listener
   xlabelsGroup.selectAll("text")
@@ -295,7 +295,7 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
         circleLabelsGroup = renderCircleLabels(circleLabelsGroup, xLinearScale, chosenXAxis);
 
         // updates tooltips with new info
-        circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+        circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
         // Sets classes of all labels to unbold text
         povertyLabel
