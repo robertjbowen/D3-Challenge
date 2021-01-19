@@ -95,11 +95,32 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     xlabel = "Smokes:";
   }
 
+  var ylabel;
+
+  if (chosenYAxis === "poverty") {
+    ylabel = "Poverty:";
+  }
+  else if (chosenYAxis === "age") {
+    ylabel = "Age:";
+  }
+  else if (chosenYAxis === "income") {
+    ylabel = "Income:";
+  }
+  else if (chosenYAxis === "healthcare") {
+    ylabel = "Health Care:";
+  }
+  else if (chosenYAxis === "obesity") {
+    ylabel = "Obesity:";
+  }
+  else {
+    ylabel = "Smokes:";
+  }
+
   var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.state}<hr>${xlabel} ${d[chosenXAxis]}`);
+      return (`${d.state}<hr>${xlabel} ${d[chosenXAxis]}<br>${ylabel} ${d[chosenYAxis]}`);
     });
 
   circlesGroup.call(toolTip);
@@ -108,7 +129,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     toolTip.show(data);
   })
     // onmouseout event
-    .on("mouseout", function(data, index) {
+    .on("mouseout", function(data) {
       toolTip.hide(data);
     });
 
@@ -192,7 +213,7 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
     .attr("text-anchor", "middle")
     .attr("fill", "white");  
 
-  // Create group for two x-axis labels
+  // Create group for multiple x-axis labels
   var xlabelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
@@ -254,11 +275,11 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
   xlabelsGroup.selectAll("text")
     .on("click", function() {
       // get value of selection
-      var value = d3.select(this).attr("value");
-      if (value !== chosenXAxis) {
+      var xValue = d3.select(this).attr("value");
+      if (xValue !== chosenXAxis) {
 
         // replaces chosenXAxis with value
-        chosenXAxis = value;
+        chosenXAxis = xValue;
 
         // console.log(chosenXAxis)
 
