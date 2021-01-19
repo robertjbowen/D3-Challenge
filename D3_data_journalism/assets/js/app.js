@@ -37,7 +37,6 @@ function xScale(censusData, chosenXAxis) {
     .range([0, width]);
 
   return xLinearScale;
-
 }
 
 // function used for updating xAxis var upon click on axis label
@@ -60,6 +59,16 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
     .attr("cx", d => newXScale(d[chosenXAxis]));
 
   return circlesGroup;
+}
+
+// function used for updating circle labels group
+function renderCircleLabels(circleLabelsGroup, newXScale, chosenXAxis) {
+
+  circleLabelsGroup.transition()
+    .duration(1000)
+    .attr("x", d=> newXScale(d[chosenXAxis]));  
+
+  return circleLabelsGroup;
 }
 
 // function used for updating circles group with new tooltip
@@ -262,6 +271,7 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
 
         // updates circles with new x values
         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+        circleLabelsGroup = renderCircleLabels(circleLabelsGroup, xLinearScale, chosenXAxis);
 
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
