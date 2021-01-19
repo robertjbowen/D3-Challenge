@@ -134,7 +134,7 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
 
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(censusData, d => d.income)])
+    .domain([0, d3.max(censusData, d => d[chosenYAxis])])
     .range([height, 0]);
 
   // Create initial axis functions
@@ -161,6 +161,27 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
     .attr("r", 20)
     .attr("fill", "steelblue")
     .attr("opacity", ".5");
+
+	// create circle labels
+  var circleLabelsGroup = chartGroup.selectAll(null)
+    .data(censusData)
+    .enter()
+    .append("text");
+
+  circleLabelsGroup
+    .attr("x", function(d) {
+      return xLinearScale(d[chosenXAxis]);
+    })
+    .attr("y", function(d) {
+      return yLinearScale(d[chosenYAxis])+5;
+    })
+    .text(function(d) {
+      return d.abbr;
+    })
+    .attr("font-family", "arial")
+    .attr("font-size", "15px")
+    .attr("text-anchor", "middle")
+    .attr("fill", "white");  
 
   // Create group for two x-axis labels
   var xlabelsGroup = chartGroup.append("g")
@@ -245,7 +266,6 @@ d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
 
-        // changes classes to change bold text
         // changes classes to change bold text
         if (chosenXAxis === "age") {
           ageLabel
