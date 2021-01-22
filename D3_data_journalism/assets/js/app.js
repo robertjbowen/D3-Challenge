@@ -96,47 +96,8 @@ function renderCircleLabels(circleLabelsGroup, newXScale, chosenXAxis, newYScale
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
-  var xlabel;
-
-  if (chosenXAxis === "poverty") {
-    xlabel = "Poverty:";
-  }
-  else if (chosenXAxis === "age") {
-    xlabel = "Age:";
-  }
-  else if (chosenXAxis === "income") {
-    xlabel = "Income:";
-  }
-  else if (chosenXAxis === "healthcare") {
-    xlabel = "Health Care:";
-  }
-  else if (chosenXAxis === "obesity") {
-    xlabel = "Obesity:";
-  }
-  else {
-    xlabel = "Smokes:";
-  }
-
-  var ylabel;
-
-  if (chosenYAxis === "poverty") {
-    ylabel = "Poverty:";
-  }
-  else if (chosenYAxis === "age") {
-    ylabel = "Age:";
-  }
-  else if (chosenYAxis === "income") {
-    ylabel = "Income:";
-  }
-  else if (chosenYAxis === "healthcare") {
-    ylabel = "Health Care:";
-  }
-  else if (chosenYAxis === "obesity") {
-    ylabel = "Obesity:";
-  }
-  else {
-    ylabel = "Smokes:";
-  }
+  var xlabel = chosenXAxis.charAt(0).toUpperCase() + chosenXAxis.slice(1);  //Capitalize the first letter of x and y label names for display purposes
+  var ylabel = chosenYAxis.charAt(0).toUpperCase() + chosenYAxis.slice(1);
 
   // formats the display appearance of the tool tip
   var toolTip = d3.tip()
@@ -161,7 +122,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("/Documents/Bootcamp/D3-Challenge/D3_data_journalism/assets/data/data.csv").then(function(censusData, err) {
+d3.csv("assets/data/data.csv").then(function(censusData, err) {
   if (err) throw err;
 
   // parse data into integers
