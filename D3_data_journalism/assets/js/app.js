@@ -43,7 +43,9 @@ function xScale(censusData, chosenXAxis) {
 function yScale(censusData, chosenYAxis) {
   // create scales
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(censusData, d => d[chosenYAxis]) * 1.2])
+    .domain([d3.min(censusData, d => d[chosenXAxis]) * 0.8,
+      d3.max(censusData, d => d[chosenYAxis]) * 1.2
+    ])
     .range([height, 0]);
 
   return yLinearScale;
@@ -171,7 +173,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
-    .attr("r", 20)
+    .attr("r", 10)
     .attr("fill", "steelblue")
     .attr("opacity", ".5");
 
