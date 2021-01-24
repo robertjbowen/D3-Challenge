@@ -90,18 +90,80 @@ The challenge starts by importing and formatting csv data to create an initial c
     <em>app.js creating and appending chart x and y axis labels</em>
 </p>
 
-6. 
+6. Next the data is added to the scatter plot as blue circles by assigning center x and y coordinates and declaring attributes for radius, color, and opacity. In d3 labels cannot be appended directly to shapes, so a second chart element for circle labels is created to display the State abbreviation values on top of the blue circles. The same coordinate values are passed and then the y value is adjusted by 5 pixles to better center the text on the blue circle. The text attributes are adjusted to make them white, arial font, and 15 px. with the middle of the label anchored to the coordinates.
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture8.png"/>
+    <br>
+    <em>app.js creating and appending chart data as blue circles</em>
+</p>
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture9.png"/>
+    <br>
+    <em>app.js creating and appending chart data labels over the blue circles</em>
+</p>
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture1.png"/>
+    <br>
+    <em>Initial Scatter Plot Rendering</em>
+</p>
 
+7. The final initialization is to update the tool tip with the chosen parameter so they will display properly.
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture11.png"/>
+    <br>
+    <em>app.js updating the tool tip</em>
+</p>
 
+8. To make the chart interactive, app.js uses three event listeners. 
 
+a. The first two are essentially the same and listen for the user to click the mouse button to select a different variable label for either the x or y axis. When the user changes a variable, The value is retrieved and assigned as the new axis parameter and displayed to the console. Just as in step 4 above, the new axis parameter is passed to the scale function and a new function called render(X or Y)Axes is called to render the image. The renderAxis functions introduce a 1000ms (1 second) transition duration which automatically generates an animation which moves the scale from the old scale values to the new ones over time rather than instantaneusly, so the change can be witnessed visually. Functions to renderCircles and renderCircleLabels are also called as in step 6 to change the center coordinates and the same transition is applied so the circles and labels appear to move to their new coordinates. Finally the classes of the axis labels are set to inactive and then only the selected label is set to active so that it appears as bold.
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture12.png"/>
+    <br>
+    <em>app.js x axis event listener</em>
+</p>
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture4.png"/>
+    <br>
+    <em>app.js functions to update the axis when a value is changed</em>
+</p>
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture5.png"/>
+    <br>
+    <em>app.js functions to update the coordinate values of the circles and labels when a value is changed</em>
+</p>
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture13.png"/>
+    <br>
+    <em>Transitioned Scatter Plot Rendering</em>
+</p>
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture14.png"/>
+    <br>
+    <em>Transitioned Scatter Plot Rendering</em>
+</p>
 
+b. The third event listener is used to display the tool tip whenever the mouse is hovered over one of the blue data point circles and to hide it when the mouse is move off of the circle. The tool tip displays the State name and the x and y label and value information for the selected circle in the upper left hand corner of the screen. This function calls the d3-tip .js plugin developed by Justin Palmer that was provided with the project starter code. (Note: the d3-tip.js code generates an error message in the console log but otherwise has no impact on the performance of the code.)
 
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture6.png"/>
+    <br>
+    <em>app.js update tool tip event listener for mouse over/ off</em>
+</p>
+
+<p>
+    <img src="https://github.com/robertjbowen/D3-Challenge/blob/main/images/Picture18.png"/>
+    <br>
+    <em>Tool Tip Rendering in upper left corner</em>
+</p>
+
+***
