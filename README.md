@@ -38,6 +38,8 @@ The purpose of this challenge is to build an interctive scatter plot of demograp
 
 The challenge starts by importing and formatting csv data to create an initial chart rendering, it then relies on event listeners to detect user inputs which call functions that transition the display. The code also uses tool tips to display element data for individual data points when the user hovers the mouse over them.
 
+***
+
 1. The index.html generates an empty shell dashboard with an empty element division with the id 'scatter' within the body of the code. The scatterplot is initialized automatically by app.js by defining the dimensions of the display box, creating a shape vector graphic wrapper, assinging it a variable called 'chartgroup' and appending it to the html at the id  'scatter'. 
 
 <p>
